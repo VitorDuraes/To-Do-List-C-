@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zVito\\OneDrive\\Desktop\\To-Do-List\\To-Do-List.csproj": {}
+    "C:\\Users\\zVito\\Documents\\GitHub\\To-Do-List-C-\\To-Do-List.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zVito\\OneDrive\\Desktop\\To-Do-List\\To-Do-List.csproj": {
+    "C:\\Users\\zVito\\Documents\\GitHub\\To-Do-List-C-\\To-Do-List.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zVito\\OneDrive\\Desktop\\To-Do-List\\To-Do-List.csproj",
+        "projectUniqueName": "C:\\Users\\zVito\\Documents\\GitHub\\To-Do-List-C-\\To-Do-List.csproj",
         "projectName": "To-Do-List",
-        "projectPath": "C:\\Users\\zVito\\OneDrive\\Desktop\\To-Do-List\\To-Do-List.csproj",
+        "projectPath": "C:\\Users\\zVito\\Documents\\GitHub\\To-Do-List-C-\\To-Do-List.csproj",
         "packagesPath": "C:\\Users\\zVito\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zVito\\OneDrive\\Desktop\\To-Do-List\\obj\\",
+        "outputPath": "C:\\Users\\zVito\\Documents\\GitHub\\To-Do-List-C-\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\zVito\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -37,7 +37,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -81,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.309/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

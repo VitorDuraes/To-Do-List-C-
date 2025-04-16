@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using To_Do_List.Models;
 using To_Do_List.Context;
+using To_Do_List.DTOs;
+using To_Do_List.Services;
 
 namespace To_Do_List.Controllers
 {
@@ -14,66 +16,47 @@ namespace To_Do_List.Controllers
     public class TaskController : ControllerBase
     {
 
-        private readonly AgendaContext _context;
-
-        public TaskController(AgendaContext context)
+        private readonly ITaskInterface _taskInterface;
+        public TaskController(ITaskInterface taskInterface)
         {
-            _context = context;
+            _taskInterface = taskInterface;
         }
 
-        [HttpPost]
-        public IActionResult Create(Tarefa tarefa)
+        [HttpPost("CriarTarefas")]
+        public async Task<ActionResult<ResponseModel<List<Tarefa>>>> CriarTask(TaskCriacaoDTO taskCriacaoDTO)
         {
-            tarefa.Status = tarefa.Status ?? "Pending";
-
-            tarefa.CreateAt = DateTime.UtcNow;
-
-            _context.Add(tarefa);
-            _context.SaveChanges();
-            return CreatedAtAction(nameof(ObterPorId), new { id = tarefa.Id }, tarefa);
-
-
+            var tarefas = await _taskInterface.CriarTask(taskCriacaoDTO);
+            return Ok(tarefas);
         }
 
-        [HttpGet]
-        public IActionResult ObterPorId()
+        [HttpGet("ListarTarefas")]
+        public async Task<ActionResult<ResponseModel<List<Tarefa>>>> ListarTasks()
         {
-            var tarefa = _context.Tarefas.ToList();
+            var tarefas = await _taskInterface.ListarTasks();
+            return Ok(tarefas);
+        }
+
+        [HttpGet("ListarTarefas/{idtask}")]
+        public async Task<ActionResult<ResponseModel<Tarefa>>> ListarTaskPorId(int idtask)
+        {
+            var tarefa = await _taskInterface.ListarTaskPorId(idtask);
             return Ok(tarefa);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Atualizar(int id, Tarefa tarefa)
+        [HttpPut("AtualizarTarefa/{idtask}")]
+        public async Task<ActionResult<ResponseModel<List<Tarefa>>>> AtualizarTask(int idtask, TaskEdicaoDTO taskEdicaoDTO)
         {
-            var tarefaAT = _context.Tarefas.Find(id);
-
-            if (tarefaAT == null)
-                return NotFound();
-
-            if (tarefa.Status != null && tarefa.Status == "Completed")
-            {
-                tarefaAT.Status = "Completed";
-            }
-            tarefaAT.Title = tarefa.Title ?? tarefaAT.Title;
-            tarefaAT.Description = tarefa.Description ?? tarefaAT.Description;
-
-            tarefaAT.CreateAt = tarefaAT.CreateAt;
-
-            _context.Tarefas.Update(tarefaAT);
-            _context.SaveChanges();
-            return Ok(tarefaAT);
+            var tarefas = await _taskInterface.AtualizarTask(taskEdicaoDTO);
+            return Ok(tarefas);
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Deletar(int id)
-        {
-            var tarefaDlt = _context.Tarefas.Find(id);
-            if (tarefaDlt == null)
-                return NotFound();
 
-            _context.Tarefas.Remove(tarefaDlt);
-            _context.SaveChanges();
-            return NoContent();
+        [HttpDelete("DeletarTarefa/{idtask}")]
+        public async Task<ActionResult<ResponseModel<List<Tarefa>>>> DeletarTask(int idtask)
+        {
+            var tarefas = await _taskInterface.DeletarTask(idtask);
+            return Ok(tarefas);
         }
+
     }
 }

@@ -1,5 +1,6 @@
 using To_Do_List.Context;
 using Microsoft.EntityFrameworkCore;
+using To_Do_List.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,6 +10,8 @@ builder.Services.AddDbContext<AgendaContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<ITaskInterface, TaskService>();
 
 var app = builder.Build();
 
