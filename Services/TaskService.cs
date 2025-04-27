@@ -30,7 +30,6 @@ namespace To_Do_List.Services
                     return response;
                 }
 
-                // Validação do status
                 if (taskEdicaoDTO.Status.ToLower() != "pending" && taskEdicaoDTO.Status.ToLower() != "completed")
                 {
                     response.Status = false;
@@ -63,8 +62,8 @@ namespace To_Do_List.Services
                 {
                     Title = taskCriacaoDTO.Title,
                     Description = taskCriacaoDTO.Description,
-                    Status = "Pending", // Define o status fixo
-                    CreateAt = DateTime.Now // (Opcional) se quiser definir o momento de criação
+                    Status = "Pending",
+                    CreateAt = DateTime.Now 
                 };
 
                 _context.Add(tarefa);
