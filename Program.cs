@@ -11,6 +11,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost", builder =>
+    {
+        builder.WithOrigins("http://localhost:3000")  // Front-end
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddScoped<ITaskInterface, TaskService>();
 
 var app = builder.Build();
@@ -21,7 +31,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseHttpsRedirection();
+
+app.UseCors("AllowLocalhost");
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

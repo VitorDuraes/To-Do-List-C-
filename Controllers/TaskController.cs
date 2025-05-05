@@ -43,12 +43,25 @@ namespace To_Do_List.Controllers
             return Ok(tarefa);
         }
 
-        [HttpPut("AtualizarTarefa/{idtask}")]
-        public async Task<ActionResult<ResponseModel<List<Tarefa>>>> AtualizarTask(int idtask, TaskEdicaoDTO taskEdicaoDTO)
+        [HttpPut("/Task/AtualizarTarefa/{id}")]
+        public async Task<ActionResult<ResponseModel<List<Tarefa>>>> AtualizarTask([FromBody] TaskEdicaoDTO taskEdicaoDTO)
         {
             var tarefas = await _taskInterface.AtualizarTask(taskEdicaoDTO);
             return Ok(tarefas);
         }
+
+        [HttpPut("AlterarStatus/{id}")]
+        public async Task<IActionResult> AlterarStatus(int id, [FromBody] StatusDTO statusDTO)
+        {
+            var response = await _taskInterface.AlterarStatus(id, statusDTO);
+            if (response.Status == false)
+            {
+                return BadRequest(response.Mensagem);
+            }
+            return Ok(response.Dados);
+        }
+
+
 
 
         [HttpDelete("DeletarTarefa/{idtask}")]

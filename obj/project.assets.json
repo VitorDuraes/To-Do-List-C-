@@ -5173,7 +5173,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\zVito\\.nuget\\packages\\": {}
+    "C:\\Users\\zVito\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
@@ -5184,13 +5185,19 @@
       "packagesPath": "C:\\Users\\zVito\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\zVito\\Documents\\GitHub\\To-Do-List-C-\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\zVito\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\zVito\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

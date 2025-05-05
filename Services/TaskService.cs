@@ -30,19 +30,63 @@ namespace To_Do_List.Services
                     return response;
                 }
 
-                if (taskEdicaoDTO.Status.ToLower() != "pending" && taskEdicaoDTO.Status.ToLower() != "completed")
+                string statusNormalizado = taskEdicaoDTO.Status.ToLower();
+
+                if (statusNormalizado != "pending" && statusNormalizado != "completed")
                 {
                     response.Status = false;
-                    response.Mensagem = "Status inválido. Permitido apenas 'Pending' ou 'Completed'.";
+                    response.Mensagem = "Status inválido. Permitido apenas 'pending' ou 'completed'.";
                     return response;
                 }
-                tarefa.Status = taskEdicaoDTO.Status;
+
+                tarefa.Title = taskEdicaoDTO.Title;
+                tarefa.Description = taskEdicaoDTO.Description;
+
+                tarefa.Status = statusNormalizado;
 
                 _context.Update(tarefa);
                 await _context.SaveChangesAsync();
 
                 response.Dados = await _context.Tarefas.ToListAsync();
                 response.Mensagem = "Tarefa atualizada com sucesso.";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Mensagem = ex.Message;
+                return response;
+            }
+        }
+
+        public async Task<ResponseModel<List<Tarefa>>> AlterarStatus(int idTask, StatusDTO statusDTO)
+        {
+            ResponseModel<List<Tarefa>> response = new ResponseModel<List<Tarefa>>();
+            try
+            {
+                var tarefa = _context.Tarefas.FirstOrDefault(tarefaBanco => tarefaBanco.Id == idTask);
+                if (tarefa == null)
+                {
+                    response.Mensagem = "Tarefa não encontrada.";
+                    return response;
+                }
+
+                string statusNormalizado = statusDTO.Status.ToLower();
+
+                if (statusNormalizado != "pending" && statusNormalizado != "completed")
+                {
+                    response.Status = false;
+                    response.Mensagem = "Status inválido. Permitido apenas 'pending' ou 'completed'.";
+                    return response;
+                }
+
+                tarefa.Status = statusNormalizado;
+
+                _context.Update(tarefa);
+                await _context.SaveChangesAsync();
+
+                response.Dados = await _context.Tarefas.ToListAsync();
+                response.Mensagem = "Status atualizado com sucesso.";
                 return response;
             }
             catch (Exception ex)
