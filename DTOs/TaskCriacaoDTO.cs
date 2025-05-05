@@ -9,6 +9,6 @@ namespace To_Do_List.DTOs
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Status { get; set; } = "Pending"; // Define o status fixo
+        public string Status { get; set; } = "Pending";
     }
 }
