@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G3iuiAnWlp0=",
+  "dgSpecHash": "Pz6Get7WAOk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\zVito\\Documents\\GitHub\\To-Do-List-C-\\To-Do-List.csproj",
+  "projectFilePath": "C:\\Users\\zVito\\OneDrive\\Desktop\\TodoFullStack\\To-Do-List-C-\\To-Do-List.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\zVito\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\zVito\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
